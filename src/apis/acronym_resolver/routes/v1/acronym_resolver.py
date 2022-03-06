@@ -1,6 +1,5 @@
 import logging
 
-import pandas as pd
 from fastapi import APIRouter, status, Request
 from fastapi.responses import JSONResponse
 
@@ -9,10 +8,11 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.get('/resolve')
+@router.get('/resolve/nl')
 def acronym_resolver(input_string: str, request: Request) -> JSONResponse:
     """
-    An endpoint that takes a string that can include acronyms, and returns another string with acronyms resolved
+    An endpoint that takes a sentence in Dutch (trained on medical data) that can include acronyms, and returns
+    another string with acronyms resolved
     """
 
     try:

@@ -1,4 +1,6 @@
 import logging
+import re
+import string
 
 import cloudpickle
 import pandas as pd
@@ -58,4 +60,7 @@ class Vectorizer(layers.Layer):
 
     @staticmethod
     def output_standardization(input_string):
-        return tensorflow.strings.regex_replace(input_string, "[%s]", "")
+        strip_chars = string.punctuation
+        strip_chars = strip_chars.replace("[", "")
+        strip_chars = strip_chars.replace("]", "")
+        return tensorflow.strings.regex_replace(input_string, "[%s]" % re.escape(strip_chars), "")

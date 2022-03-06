@@ -5,7 +5,7 @@
 
 # Prerequisites
 
-- Unix based system (tested mainly on MacOS Big Sur)
+- Unix based system (tested mainly on MacOS Big Sur and Windows using Git Bash)
 - Docker desktop
 
 # 🚀 Setup guide
@@ -39,6 +39,9 @@
 - Hyperparameter tuning was performed only manually, and automated tuning should be implemented
 - The model was only trained on toy dataset, therefore the vocabulary has low coverage, and the accuracy is low for
   out-of-sample evaluation
+- The sequence-to-sequence approach was chosen to reduce the process from 2 tasks (NER and NEL)
+- While this approach didn't produce an accurate model on the toy test data, it should have 
+  decent accuracy with enough training samples
 
 ### Model tracking
 
