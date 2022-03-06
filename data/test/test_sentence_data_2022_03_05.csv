@@ -1,0 +1,34 @@
+input_sentence|output_sentence|labels
+B/ sat 100 % , AF 30 /min , geen extra zuurstof . Symmetrische thoraxexcursies en met symmetrisch ademgeruis .|B/ sat 100 % , ademfrequentie 30 /min , geen extra zuurstof . Symmetrische thoraxexcursies en met symmetrisch ademgeruis .|ademfrequentie
+Geen bijzonderheden , AF 20 /min ( niet comfortabel )|Geen bijzonderheden , ademfrequentie 20 /min ( niet comfortabel )|ademfrequentie
+Mw is bekent met AF rond freq 80 .|Mw is bekent met ademfrequentie rond freq 80 .|ademfrequentie
+Notitie : S 98 % AF 34 x|Notitie : S 98 % ademfrequentie 34 x|ademfrequentie
+Ritme : AF 70 - 75 bpm|Ritme : ademfrequentie 70 - 75 bpm|ademfrequentie
+Ritme : AF na metoprolol SR 65 - 75 bpm .|Ritme : ademfrequentie na metoprolol SR 65 - 75 bpm .|ademfrequentie
+RR 100 / 50 , p 160 /min , regulair , sat 96 % met 7 liter O2 , T 40 graden , AF 24 /min|RR 100 / 50 , p 160 /min , regulair , sat 96 % met 7 liter O2 , T 40 graden , ademfrequentie 24 /min|ademfrequentie
+10 - 09 Nachtelijk AF met hoge ventrikevolgrespons waarvoor optitreren met metoprolol .|10 - 09 Nachtelijk atriumfibrilleren met hoge ventrikevolgrespons waarvoor optitreren met metoprolol .|atriumfibrilleren
+2012 Hartinfarct , CABG , AF , Pacemaker|2012 Hartinfarct , CABG , atriumfibrilleren , Pacemaker|atriumfibrilleren
+24 / 12 Dyspnoe bij AF met snelle ventrikelrespons waarvoor opname CCU|24 / 12 Dyspnoe bij atriumfibrilleren met snelle ventrikelrespons waarvoor opname CCU|atriumfibrilleren
+C : AF , hypotensief wv nor opgehoogd en onttrekken via dialyse gestaakt .|C : atriumfibrilleren , hypotensief wv nor opgehoogd en onttrekken via dialyse gestaakt .|atriumfibrilleren
+DD : bij 1 . , AF|DD : bij 1 . , atriumfibrilleren|
+Electrocardiogram dd 1 - 10 : Atriumfibrilleren 75 x/minuut , linkerhartas , QRS 152 ms , LBTB complex . Conclusie : AF met rustige volgfrequentie met LBTB complex .|Electrocardiogram dd 1 - 10 : Atriumfibrilleren 75 x/minuut , linkerhartas , QRS 152 ms , LBTB complex . Conclusie : atriumfibrilleren met rustige volgfrequentie met LBTB complex .|atriumfibrilleren
+Etiologie ( TOAST-classificatie ) : thrombo-embolic ( AF de novo )|Etiologie ( TOAST-classificatie ) : thrombo-embolic ( atriumfibrilleren de novo )|atriumfibrilleren
+Met de hand overgemeten . RR 98 / 60 . Meest waarschijnlijk bij AF met snelle vvf .|Met de hand overgemeten . RR 98 / 60 . Meest waarschijnlijk bij atriumfibrilleren met snelle vvf .|atriumfibrilleren
+2008 : AP wv CAG : Medicamenteus beleid ( life long DABT )|2008 : angina pectoris wv CAG : Medicamenteus beleid ( life long DABT )|angina pectoris
+2017 augustus Afname AP naar functionele klasse II|2017 augustus Afname angina pectoris naar functionele klasse II|angina pectoris
+Conclusie : Bicuspide aortaklep ( Sievers type 0 , AP ) met milde aortaklepstenose .|Conclusie : Bicuspide aortaklep ( Sievers type 0 , angina pectoris ) met milde aortaklepstenose .|angina pectoris
+Stabiele AP|Stabiele angina pectoris|angina pectoris
+Re nier : net zichtbaar pyelum , aslengte 4,7 cm ; Li nier geringe dilatatie pyelum , kelken niet gedilateerd ; AP diameter pyelum 9 mm ; aslengte 5,5 cm .|Re nier : net zichtbaar pyelum , aslengte 4,7 cm ; Li nier geringe dilatatie pyelum , kelken niet gedilateerd ; anterior-posterior diameter pyelum 9 mm ; aslengte 5,5 cm .|anterior-posterior
+RX voet AP beiderzijds .|RX voet anterior-posterior beiderzijds .|anterior-posterior
+Verslag : AP en laterale opname knie .|Verslag : anterior-posterior en laterale opname knie .|anterior-posterior
+Verslag : NEWLINE X-bekken AP .|Verslag : NEWLINE X-bekken anterior-posterior .|anterior-posterior
+. HA 85-120 /min , AH 24-28 /min , sat 91-95 % .|. Hartslag 85-120 /min , AH 24-28 /min , sat 91-95 % .|hartslag
+Controles : T 1 x 38.1 , verder nl temp , HA 125-140 /min , SaO2 99-100 % , AH 30-40 /minuut , EMV maximaal .|Controles : T 1 x 38.1 , verder nl temp , Hartslag 125-140 /min , SaO2 99-100 % , AH 30-40 /minuut , EMV maximaal .|hartslag
+HA 120-140 in rust .|Hartslag 120-140 in rust .|hartslag
+Rustige HA ( 2-12 ) ,|Rustige Hartslag ( 2-12 ) ,|hartslag
+HA 106-144|Hartslag 106-144|hartslag
+HA stelt dat e.e.a. haars inziens tot domein van HA behoort .|huisarts stelt dat e.e.a. haars inziens tot domein van huisarts behoort .|huisarts
+Hist herhalen ( brief HA staat dat het positief was )|Hist herhalen ( brief huisarts staat dat het positief was )|huisarts
+Nu hyperthyreoidie , HA gebeled , gaat dosis weer ietsje verlagen .|Nu hyperthyreoidie , huisarts gebeled , gaat dosis weer ietsje verlagen .|huisarts
+Slaapproblemen : ja , kan alleen inslapen met slaaptabletten ( gebruikt al 22 jaar , HA wil dat ze ermee stopt ) .|Slaapproblemen : ja , kan alleen inslapen met slaaptabletten ( gebruikt al 22 jaar , huisarts wil dat ze ermee stopt ) .|huisarts
+Via HA naar de dermatologie van het CWZ geweest .|Via huisarts naar de dermatologie van het CWZ geweest .|huisarts

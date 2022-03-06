@@ -1,0 +1,35 @@
+[default]
+
+[default.data.raw]
+raw_sentence_data = 'coding_test_sentence_data.txt'
+raw_test_data = 'coding_test_toy_set_acronyms.csv'
+
+[default.data.mapping]
+mapping_data = 'coding_test_toy_set_acronyms.csv'
+mapping_columns = ['acronym', 'expansion']
+
+[default.data.training]
+dataset = 'sentence_data_2022_03_05.csv'
+
+[default.data.test]
+dataset = 'test_sentence_data_2022_03_05.csv'
+
+[default.pipeline.preprocessing]
+val_split_percentage = 0.2
+
+[default.pipeline.vectorizer]
+vocab_size = 20000
+sequence_length = 30
+batch_size = 8
+decoded_sequence_length = 30
+
+[default.pipeline.transformer]
+epochs = 30
+dropout_percentage = 0.5
+embedding_dim = 128
+latent_dim = 2048
+num_heads = 8
+checkpoint_path = 'transformer_checkpoint.ckpt'
+
+[default.api]
+version = "0.1.0"
