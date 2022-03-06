@@ -3,6 +3,11 @@
 > A simple service to train and deploy an ML model
 > for acronym disambiguation NLP task on Dutch medical data
 
+# Prerequisites
+
+- Unix based system (tested mainly on MacOS Big Sur)
+- Docker desktop
+
 # 🚀 Setup guide
 
 1. Configure `.env` file for your choice. You can put there anything you like, it will be used to configure you
@@ -32,7 +37,7 @@
     - PositionalEmbedding: encodes the positions of the sequences
     - TransformerDecoder: decodes sequences using multiheaded attention on both the input and output sequences
 - Hyperparameter tuning was performed only manually, and automated tuning should be implemented
-- The model was only trained on toy dataset, therefore the vocabulary has low coverage, and the accuracy is low for 
+- The model was only trained on toy dataset, therefore the vocabulary has low coverage, and the accuracy is low for
   out-of-sample evaluation
 
 ### Model tracking
