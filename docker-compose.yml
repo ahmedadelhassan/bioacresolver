@@ -1,16 +1,9 @@
 version: "3"
 services:
-  bioacresolver:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    restart: always
-    container_name: "bioacresolver"
   s3:
-    image:  minio/minio:RELEASE.2021-11-24T23-19-33Z
+    image: minio/minio:RELEASE.2021-11-24T23-19-33Z
     restart: unless-stopped
+    container_name: minio_s3
     ports:
       - "9000:9000"
       - "9001:9001"
@@ -47,6 +40,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    expose:
+      - "5000"
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
@@ -56,6 +51,7 @@ services:
       - public
       - internal
     entrypoint: bash ./wait-for-it.sh db:3306 -t 90 -- mlflow server --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE} --default-artifact-root s3://${AWS_BUCKET_NAME}/ -h 0.0.0.0
+
   create_s3_buckets:
     image: minio/mc
     depends_on:
@@ -68,10 +64,27 @@ services:
       "
     networks:
       - internal
+
+  bioacresolver:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    container_name: "bioacresolver"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    networks:
+      - internal
+      - public
+
 networks:
   internal:
   public:
     driver: bridge
+
 volumes:
   db_volume:
   minio_volume:

@@ -1,24 +1,22 @@
 import logging
 
 import pandas as pd
-
-from core.config import settings
-from core.logging import setup_logging
-from core.utils import get_data_path
 from sklearn.model_selection import train_test_split
 
+from core.config import settings
+from core.utils import get_data_path
+
 logger = logging.getLogger(__name__)
-setup_logging()
 
 
 def _load_train_dataset() -> pd.DataFrame:
-    dataset_path = get_data_path() / 'training' / settings.data.training.dataset
+    dataset_path = get_data_path() / settings.data.training.dataset
     df = pd.read_csv(dataset_path, sep='|')
     return df[df['labels'].notnull()]
 
 
 def _load_test_dataset() -> pd.DataFrame:
-    dataset_path = get_data_path() / 'test' / settings.data.test.dataset
+    dataset_path = get_data_path() / settings.data.test.dataset
     df = pd.read_csv(dataset_path, sep='|')
     return df[df['labels'].notnull()]
 

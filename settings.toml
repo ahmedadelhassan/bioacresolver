@@ -1,18 +1,18 @@
 [default]
 
 [default.data.raw]
-raw_sentence_data = 'coding_test_sentence_data.txt'
-raw_test_data = 'coding_test_toy_set_acronyms.csv'
+raw_sentence_data = "raw/coding_test_sentence_data.txt"
+raw_test_data = "mapping/coding_test_toy_set_acronyms.csv"
 
 [default.data.mapping]
-mapping_data = 'coding_test_toy_set_acronyms.csv'
-mapping_columns = ['acronym', 'expansion']
+mapping_data = "mapping/coding_test_toy_set_acronyms.csv"
+mapping_columns = ["acronym", "expansion"]
 
 [default.data.training]
-dataset = 'sentence_data_2022_03_05.csv'
+dataset = "training/sentence_data_2022_03_05.csv"
 
 [default.data.test]
-dataset = 'test_sentence_data_2022_03_05.csv'
+dataset = "test/test_sentence_data_2022_03_05.csv"
 
 [default.pipeline.preprocessing]
 val_split_percentage = 0.2
@@ -22,6 +22,8 @@ vocab_size = 20000
 sequence_length = 30
 batch_size = 8
 decoded_sequence_length = 30
+input_vectorizer_path = 'model_artifact/input_vectorizer.pkl'
+output_vectorizer_path = 'model_artifact/output_vectorizer.pkl'
 
 [default.pipeline.transformer]
 epochs = 30
@@ -29,7 +31,14 @@ dropout_percentage = 0.5
 embedding_dim = 128
 latent_dim = 2048
 num_heads = 8
-checkpoint_path = 'transformer_checkpoint.ckpt'
+
+[default.pipeline]
+pipeline_artifacts_path = "model_artifact"
+model_artifact = "model_artifact.pkl"
+model_weights = "model_weights.h5"
 
 [default.api]
 version = "0.1.0"
+
+[default.mlflow]
+tracking_uri = "http://host.docker.internal:5000" # change to localhost when running locally

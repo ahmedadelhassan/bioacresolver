@@ -1,5 +1,9 @@
+import logging
+
 import tensorflow as tf
 from tensorflow.keras import layers, Sequential, Input, Model
+
+logger = logging.getLogger(__name__)
 
 
 class TransformerEncoder(layers.Layer):
@@ -29,6 +33,15 @@ class TransformerEncoder(layers.Layer):
         proj_output = self.dense_proj(proj_input)
         return self.layernorm_2(proj_input + proj_output)
 
+    def get_config(self):
+        config = super().get_config().copy()
+        config.update({
+            "embed_dim": self.embed_dim,
+            "dense_dim": self.dense_dim,
+            "num_heads": self.num_heads
+        })
+        return config
+
 
 class PositionalEmbedding(layers.Layer):
     def __init__(self, sequence_length, vocab_size, embed_dim, **kwargs):
@@ -52,6 +65,15 @@ class PositionalEmbedding(layers.Layer):
 
     def compute_mask(self, inputs, mask=None):
         return tf.math.not_equal(inputs, 0)
+
+    def get_config(self):
+        config = super().get_config().copy()
+        config.update({
+            "sequence_length": self.sequence_length,
+            "vocab_size": self.vocab_size,
+            "embed_dim": self.embed_dim
+        })
+        return config
 
 
 class TransformerDecoder(layers.Layer):
@@ -110,6 +132,15 @@ class TransformerDecoder(layers.Layer):
         )
         return tf.tile(mask, mult)
 
+    def get_config(self):
+        config = super().get_config().copy()
+        config.update({
+            "embed_dim": self.embed_dim,
+            "latent_dim": self.latent_dim,
+            "num_heads": self.num_heads
+        })
+        return config
+
 
 class Transformer:
     def __init__(self, sequence_length, vocab_size, embedding_dim, latent_dim, num_heads):
@@ -120,29 +151,34 @@ class Transformer:
         self.num_heads = num_heads
 
     def __call__(self, *args, **kwargs):
-        encoder_inputs = Input(shape=(None,), dtype="int64", name="encoder_inputs")
-        encoder_pos_embedding = PositionalEmbedding(
-            self.sequence_length, self.vocab_size, self.embedding_dim)(encoder_inputs)
-        encoder_outputs = TransformerEncoder(
-            self.embedding_dim, self.latent_dim, self.num_heads)(encoder_pos_embedding)
-        encoder = Model(encoder_inputs, encoder_outputs)
+        try:
+            encoder_inputs = Input(shape=(None,), dtype="int64", name="encoder_inputs")
+            encoder_pos_embedding = PositionalEmbedding(
+                self.sequence_length, self.vocab_size, self.embedding_dim)(encoder_inputs)
+            encoder_outputs = TransformerEncoder(
+                self.embedding_dim, self.latent_dim, self.num_heads)(encoder_pos_embedding)
+            encoder = Model(encoder_inputs, encoder_outputs)
 
-        decoder_inputs = Input(shape=(None,), dtype="int64", name="decoder_inputs")
-        encoded_seq_inputs = Input(shape=(None, self.embedding_dim), name="decoder_state_inputs")
-        decoder_pos_embedding = PositionalEmbedding(self.sequence_length, self.vocab_size, self.embedding_dim)(
-            decoder_inputs)
-        decoder_outputs = TransformerDecoder(
-            self.embedding_dim, self.latent_dim, self.num_heads)(decoder_pos_embedding, encoded_seq_inputs)
-        dropout = layers.Dropout(0.5)(decoder_outputs)
-        decoder_outputs = layers.Dense(self.vocab_size, activation="softmax")(dropout)
-        decoder = Model([decoder_inputs, encoded_seq_inputs], decoder_outputs)
+            decoder_inputs = Input(shape=(None,), dtype="int64", name="decoder_inputs")
+            encoded_seq_inputs = Input(shape=(None, self.embedding_dim), name="decoder_state_inputs")
+            decoder_pos_embedding = PositionalEmbedding(self.sequence_length, self.vocab_size, self.embedding_dim)(
+                decoder_inputs)
+            decoder_outputs = TransformerDecoder(
+                self.embedding_dim, self.latent_dim, self.num_heads)(decoder_pos_embedding, encoded_seq_inputs)
+            dropout = layers.Dropout(0.5)(decoder_outputs)
+            decoder_outputs = layers.Dense(self.vocab_size, activation="softmax")(dropout)
+            decoder = Model([decoder_inputs, encoded_seq_inputs], decoder_outputs)
 
-        decoder_outputs = decoder([decoder_inputs, encoder_outputs])
-        transformer = Model(
-            [encoder_inputs, decoder_inputs], decoder_outputs, name="transformer"
-        )
+            decoder_outputs = decoder([decoder_inputs, encoder_outputs])
+            transformer = Model(
+                [encoder_inputs, decoder_inputs], decoder_outputs, name="transformer"
+            )
 
-        transformer.summary()
-        transformer.compile("rmsprop", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
+            transformer.summary()
+            transformer.compile("rmsprop", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
 
-        return transformer
+            return transformer
+
+        except Exception:
+            logger.exception("Failed to create transformer model")
+            raise

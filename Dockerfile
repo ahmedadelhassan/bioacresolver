@@ -11,4 +11,5 @@ RUN pip install --upgrade pip && \
 
 COPY . ./
 ENV PYTHONPATH=/app/src
-CMD [ "uvicorn", "--host", "0.0.0.0", "--port", "8080", "--log-level", "info", "--factory", "apis:create_app" ]
+RUN chmod +x ./docker-entrypoint.sh
+ENTRYPOINT ./docker-entrypoint.sh

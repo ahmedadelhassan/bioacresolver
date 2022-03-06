@@ -146,7 +146,8 @@ CHANGELOG
 *.ppk
 *.terraform
 
-# Tensorflow
+# Model artifacts
 *.pb
 *.ckpt
-*model_weights
+*.h5
+*.pkl

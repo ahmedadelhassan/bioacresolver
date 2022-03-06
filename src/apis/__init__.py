@@ -7,6 +7,7 @@ from fastapi_utils.timing import add_timing_middleware
 from apis.acronym_resolver.api import router as api_resolver
 from core.config import settings
 from core.logging import setup_logging
+from core.ml.pipeline.pipeline import Pipeline
 
 
 def create_app():
@@ -23,5 +24,8 @@ def create_app():
 
     timing_logger = logging.getLogger('timing')
     add_timing_middleware(app, record=timing_logger.info, prefix="app", exclude="untimed")
+
+    # Loading model pipeline
+    app.state.pipeline = Pipeline().load()
 
     return app

@@ -18,7 +18,7 @@ def _remove_nonalphnumeric(s: str) -> str:
 
 def _load_acronyms_mapping() -> dict:
     """ Load acronyms mapping """
-    mapping_path = get_data_path() / 'mapping' / settings.data.mapping.mapping_data
+    mapping_path = get_data_path() / settings.data.mapping.mapping_data
     df = pd.read_csv(mapping_path, sep='|')
     df = df[settings.data.mapping.mapping_columns].drop_duplicates()
     df['expansion'] = df.apply(lambda s: s['expansion'].lower(), axis=1)
@@ -28,7 +28,7 @@ def _load_acronyms_mapping() -> dict:
 
 def _load_test_samples() -> pd.DataFrame:
     """ Load toy test data """
-    raw_test_data_path = get_data_path() / 'mapping' / settings.data.raw.raw_test_data
+    raw_test_data_path = get_data_path() / settings.data.raw.raw_test_data
     raw_df = pd.read_csv(raw_test_data_path, sep='|')
     raw_df['input_sentence'], raw_df['labels'] = raw_df['sample'], raw_df['expansion'].str.lower()
     raw_df['output_sentence'] = raw_df. \
@@ -39,7 +39,7 @@ def _load_test_samples() -> pd.DataFrame:
 
 def _load_raw_sentence_data() -> pd.DataFrame:
     """ Load raw sentence data """
-    raw_sentence_data_path = get_data_path() / 'raw' / settings.data.raw.raw_sentence_data
+    raw_sentence_data_path = get_data_path() / settings.data.raw.raw_sentence_data
     with open(raw_sentence_data_path, 'r') as fr:
         sentences = [line.replace('\n', '') for line in fr.readlines()]
     return pd.DataFrame(sentences, columns=['output_sentence'])
@@ -63,12 +63,12 @@ def create_dataset() -> None:
     train_sentences['input_sentence'], train_sentences['labels'] = zip(*train_sentences.apply(
         lambda s: map_acronyms(s['output_sentence'], acronyms_mapping),
         axis=1))
-    train_data_path = get_data_path() / 'training' / settings.data.training.dataset
+    train_data_path = get_data_path() / settings.data.training.dataset
     train_sentences.to_csv(train_data_path, sep='|', index=False)
 
     logger.info("Creating test data by mapping acronyms to expanded forms")
     test_sentences = _load_test_samples()
-    test_data_path = get_data_path() / 'test' / settings.data.test.dataset
+    test_data_path = get_data_path() / settings.data.test.dataset
     test_sentences.to_csv(test_data_path, sep='|', index=False)
 
 
