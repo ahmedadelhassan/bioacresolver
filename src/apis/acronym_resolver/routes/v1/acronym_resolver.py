@@ -1,6 +1,6 @@
 import logging
 
-from fastapi import APIRouter, status, Request
+from fastapi import APIRouter, status, Request, Query
 from fastapi.responses import JSONResponse
 
 router = APIRouter()
@@ -9,7 +9,10 @@ logger = logging.getLogger(__name__)
 
 
 @router.get('/resolve/nl')
-def acronym_resolver(input_string: str, request: Request) -> JSONResponse:
+def acronym_resolver(
+    request: Request,
+    input_string: str = Query(..., example="Met angineuze klachten doorverwezen door HA"),
+) -> JSONResponse:
     """
     An endpoint that takes a sentence in Dutch (trained on medical data) that can include acronyms, and returns
     another string with acronyms resolved
