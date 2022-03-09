@@ -8,4 +8,4 @@ import uvicorn
 
 if __name__ == "__main__":
     logging.info('****** Starting Service Server ******')
-    uvicorn.run('apis:create_app', factory=True, host="0.0.0.0", port=10001)
+    uvicorn.run('apis:create_app', factory=True, host="0.0.0.0", port=8080)
